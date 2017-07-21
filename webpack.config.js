@@ -29,10 +29,6 @@ module.exports = {
 					} 
 				}
 			},
-			{
-                test: /\.css$/,
-                use: [ 'style-loader', 'css-loader' ]
-            },
             {
                 test: /\.scss$/,
                 enforce: "pre",
@@ -43,6 +39,10 @@ module.exports = {
                     }, {
                         loader: "sass-loader"
                 }]
+            },
+			{
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
             },
             {
                 test: /\.woff2?$|\.ttf$|\.eot$|\.svg$|\.png|\.jpe?g|\.gif$/,
