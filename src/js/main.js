@@ -1,5 +1,5 @@
-var userList = require('./userList.js');
-require('../css/style.css');
+import userList from './userList.js'
+
 
 const users = [
     { name: 'Oksana', age: 22 }, 

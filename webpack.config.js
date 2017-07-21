@@ -1,9 +1,13 @@
 var webpack = require("webpack");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	context: __dirname,
 	devtool: "eval-source-map",
-	entry: "./src/js/main.js",
+	entry: {
+		bundle: "./src/js/main.js",
+		styles: './src/scss/style.scss'
+	},
 	output: {
 		path: __dirname + "/dist",
 		filename: "bundle.js"
@@ -24,17 +28,18 @@ module.exports = {
 					} 
 				}
 			},
-			{
-				test: /\.(gif|png|jpe?g|svg)$/i,
-				loaders: [
-				'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-				'image-webpack-loader'
-				]
-			},
-			{
-				test: /\.css$/,
-				use: [ 'style-loader', 'css-loader' ]
-			},
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!resolve-url!sass-loader?sourceMap')
+            },
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+            },
+            {
+                test: /\.woff2?$|\.ttf$|\.eot$|\.svg$|\.png|\.jpe?g|\.gif$/,
+                loader: 'file-loader'
+            },
 			{
 				test: /\.js$/,
 				exclude: /(node_modules)/,
@@ -47,7 +52,8 @@ module.exports = {
 			}
 		]
 	},
-	plugins: [new webpack.optimize.UglifyJsPlugin({
+	plugins: [
+	new webpack.optimize.UglifyJsPlugin({
 		minimize: true,
 		compress: {
 			warnings: false
@@ -56,7 +62,11 @@ module.exports = {
 			comments: false,
 			beautify: true,
 		}
-	})],
+	}),
+	new ExtractTextPlugin('styles.css', {
+        allChunks: true
+    })
+	],
 	devServer: {
 		inline:true,
 		port: 8081

@@ -1,7 +1,7 @@
-var _ = require('lodash');
+import _ from 'lodash'
 import avatarImg from '../img/a.jpg'
 
-function userList(users){
+export const userList = function (users){
     const container = document.getElementById('root');
     const sortedUsers = _.sortBy(users, 'age');
     this.showList = () => {
@@ -15,5 +15,3 @@ function userList(users){
         });
     }
 }
-
-module.exports = userList;
