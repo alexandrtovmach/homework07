@@ -1,5 +1,4 @@
 var webpack = require("webpack");
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	context: __dirname,
@@ -9,8 +8,10 @@ module.exports = {
 		styles: './src/scss/style.scss'
 	},
 	output: {
-		path: __dirname + "/dist",
-		filename: "bundle.js"
+		filename: '[name].js',
+        path: __dirname + '/dist',
+        chunkFilename: '[id].[chunkhash].js',
+		publicPath: __dirname + '/dist/'
 	},
 	module:{
 		rules: [
@@ -28,13 +29,20 @@ module.exports = {
 					} 
 				}
 			},
-            {
-                test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!resolve-url!sass-loader?sourceMap')
+			{
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
             },
             {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+                test: /\.scss$/,
+                enforce: "pre",
+                use: [{
+                        loader: "style-loader"
+                    }, {
+                        loader: "css-loader"
+                    }, {
+                        loader: "sass-loader"
+                }]
             },
             {
                 test: /\.woff2?$|\.ttf$|\.eot$|\.svg$|\.png|\.jpe?g|\.gif$/,
@@ -60,12 +68,9 @@ module.exports = {
 		},
 		output: {
 			comments: false,
-			beautify: true,
+			beautify: false,
 		}
-	}),
-	new ExtractTextPlugin('styles.css', {
-        allChunks: true
-    })
+	})
 	],
 	devServer: {
 		inline:true,

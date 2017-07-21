@@ -1,6 +1,5 @@
-import userList from './userList.js'
-
-
+import userList from './userList.js';
+//array of users
 const users = [
     { name: 'Oksana', age: 22 }, 
     { name: 'Viktor', age: 14 }, 
@@ -12,6 +11,5 @@ const users = [
     { name: 'Andriy', age: 33}, 
     { name: 'Zakhar', age: 40}
 ];
-
 var userListModule = new userList(users);
 userListModule.showList();
