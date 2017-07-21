@@ -1,0 +1,30 @@
+{
+  "name": "w_webpack_v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap-css": "^4.0.0-alpha.5",
+    "lodash": "^4.17.4",
+    "webpack": "^3.3.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "css-loader": "^0.28.4",
+    "image-webpack-loader": "^3.3.1",
+    "jshint": "^2.9.5",
+    "jshint-loader": "^0.8.4",
+    "postcss-import": "^10.0.0",
+    "postcss-loader": "^2.0.6",
+    "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^0.4.6"
+  }
+}
